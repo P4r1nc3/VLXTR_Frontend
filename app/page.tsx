@@ -341,7 +341,7 @@ export default function LandingPage() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/5 rounded-xl blur-xl opacity-50"></div>
               <div className="relative rounded-xl overflow-hidden border border-border/40 shadow-xl">
-                <img src="/placeholder.svg?height=800&width=1200" alt="VLXTR Dashboard" className="w-full h-auto" />
+                <img src="/dashboard-mockup.png" alt="VLXTR Dashboard" className="w-full h-auto" />
               </div>
             </div>
           </div>
