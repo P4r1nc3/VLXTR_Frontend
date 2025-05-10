@@ -154,11 +154,11 @@ export function PrinterList() {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-0">
-            <div className="aspect-video bg-muted flex items-center justify-center">
+            <div className="aspect-video bg-white flex items-center justify-center p-2">
               <img
                 src={printer.image || "/placeholder.svg"}
                 alt={`Preview of ${printer.name}`}
-                className="h-full w-full object-cover"
+                className="h-full w-auto object-contain max-h-[200px]"
               />
             </div>
             <div className="p-4 space-y-4">
