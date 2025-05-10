@@ -42,39 +42,13 @@ export default function PrintersPage() {
 
         <Tabs defaultValue="all" className="space-y-4">
           <TabsList>
-            <TabsTrigger value="all">All Printers</TabsTrigger>
-            <TabsTrigger value="active">Active</TabsTrigger>
-            <TabsTrigger value="idle">Idle</TabsTrigger>
+            <TabsTrigger value="printers">Printers</TabsTrigger>
             <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
             <TabsTrigger value="filament">Filament</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="all" className="space-y-4">
+          <TabsContent value="printers" className="space-y-4">
             <PrinterList />
-          </TabsContent>
-
-          <TabsContent value="active" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Active Printers</CardTitle>
-                <CardDescription>Printers currently running print jobs</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-10 text-muted-foreground">Active printers will be displayed here</div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="idle" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Idle Printers</CardTitle>
-                <CardDescription>Printers ready for new print jobs</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-10 text-muted-foreground">Idle printers will be displayed here</div>
-              </CardContent>
-            </Card>
           </TabsContent>
 
           <TabsContent value="maintenance" className="space-y-4">
