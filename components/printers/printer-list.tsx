@@ -22,7 +22,7 @@ const printers = [
     lastMaintenance: "2023-06-15",
     totalPrints: 124,
     location: "Main Office",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/X1C.jpg",
   },
   {
     id: 2,
@@ -41,11 +41,11 @@ const printers = [
     lastMaintenance: "2023-07-01",
     totalPrints: 87,
     location: "Main Office",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/P1P.jpg",
   },
   {
     id: 3,
-    name: "BambuLab X1",
+    name: "BambuLab X1E",
     status: "Idle",
     model: "-",
     progress: 0,
@@ -60,7 +60,7 @@ const printers = [
     lastMaintenance: "2023-06-20",
     totalPrints: 156,
     location: "Workshop",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/X1E.jpg",
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ const printers = [
     lastMaintenance: "2023-07-10",
     totalPrints: 62,
     location: "Workshop",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/P1S.jpg",
   },
   {
     id: 5,
@@ -98,7 +98,7 @@ const printers = [
     lastMaintenance: "2023-07-15",
     totalPrints: 98,
     location: "Main Office",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/X1C.jpg",
   },
 ]
 
