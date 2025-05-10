@@ -362,31 +362,35 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-card rounded-xl p-6 border border-border/40 shadow-sm">
-                <div className="flex items-center gap-1 mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg
-                      key={star}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="text-primary"
-                    >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="mb-6 text-muted-foreground">"{testimonial.quote}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-primary/20"></div>
-                  <div>
-                    <p className="font-medium">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                <div key={index} className="bg-card rounded-xl p-6 border border-border/40 shadow-sm">
+                  <div className="flex items-center gap-1 mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <svg
+                            key={star}
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="text-primary"
+                        >
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    ))}
+                  </div>
+                  <p className="mb-6 text-muted-foreground">"{testimonial.quote}"</p>
+                  <div className="flex items-center gap-3">
+                    <img
+                        src={testimonial.avatarSrc}
+                        alt={`${testimonial.name}'s avatar`}
+                        className="h-10 w-10 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="font-medium">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
             ))}
           </div>
         </div>
@@ -826,24 +830,24 @@ const dashboardFeatures = [
 
 const testimonials = [
   {
-    quote:
-      "VLXTR has completely transformed how I manage my 3D printing business. The Allegro integration saves me hours every week.",
-    name: "Marek Kowalski",
-    title: "3D Print Shop Owner",
+    name: "Anna Kowalska",
+    title: "3D Printing Engineer",
+    quote: "VLXTR completely transformed our prototyping process. The quality and speed are unmatched.",
+    avatarSrc: "/avatar-anna.png"
   },
   {
-    quote:
-      "The printer monitoring features are incredible. I can check on my prints from anywhere and get notified when they're complete.",
-    name: "Anna Nowak",
+    name: "Marek Nowak",
     title: "Product Designer",
+    quote: "The precision of VLXTR allowed us to iterate faster and bring our product to market in half the time.",
+    avatarSrc: "/avatar-marek.png"
   },
   {
-    quote:
-      "The analytics have helped me identify bottlenecks in my production process and significantly improve efficiency.",
     name: "Tomasz Wiśniewski",
-    title: "Manufacturing Manager",
-  },
-]
+    title: "Manufacturing Lead",
+    quote: "We've tested many solutions, but VLXTR stands out for its reliability and excellent customer support.",
+    avatarSrc: "/avatar-tomasz.png"
+  }
+];
 
 const pricingPlans = [
   {
