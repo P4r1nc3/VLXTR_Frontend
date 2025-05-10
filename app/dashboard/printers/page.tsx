@@ -40,7 +40,7 @@ export default function PrintersPage() {
           </div>
         </div>
 
-        <Tabs defaultValue="all" className="space-y-4">
+        <Tabs defaultValue="printers" className="space-y-4">
           <TabsList>
             <TabsTrigger value="printers">Printers</TabsTrigger>
             <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
