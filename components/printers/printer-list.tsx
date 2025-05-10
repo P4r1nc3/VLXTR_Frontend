@@ -103,7 +103,7 @@ const printers = [
 ]
 
 export function PrinterList() {
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: "Printing" | "Paused" | "Idle" | "Maintenance" | string) => {
     switch (status) {
       case "Printing":
         return "bg-green-500"
@@ -118,7 +118,7 @@ export function PrinterList() {
     }
   }
 
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: "Printing" | "Paused" | "Idle" | "Maintenance" | string) => {
     switch (status) {
       case "Printing":
         return <Badge className="bg-green-500 hover:bg-green-600">Printing</Badge>

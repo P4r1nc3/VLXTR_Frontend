@@ -41,7 +41,7 @@ const orders = [
 ]
 
 export function OrderList() {
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
       case "Pending":
         return (

@@ -17,7 +17,7 @@ const data = [
 export function OrdersAnalytics() {
   const { theme } = useTheme()
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: any[]; label?: string }) => {
     if (active && payload && payload.length) {
       return (
         <Card className="border-none shadow-lg">

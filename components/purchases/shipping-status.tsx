@@ -57,7 +57,7 @@ const shipments = [
 ]
 
 export function ShippingStatus() {
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
       case "Preparing":
         return <Badge className="bg-blue-500 hover:bg-blue-600">Preparing</Badge>

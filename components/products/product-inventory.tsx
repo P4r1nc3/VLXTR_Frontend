@@ -4,7 +4,15 @@ import { Button } from "@/components/ui/button"
 import { AlertCircle, Plus } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 
-const inventory = [
+const inventory: {
+  id: number;
+  name: string;
+  sku: string;
+  stock: number;
+  reorderPoint: number;
+  status: "In Stock" | "Out of Stock" | "Low Stock";
+  location: string;
+}[] = [
   {
     id: 1,
     name: "Desk Organizer",
@@ -80,7 +88,7 @@ const inventory = [
 ]
 
 export function ProductInventory() {
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: "In Stock" | "Low Stock" | "Out of Stock") => {
     switch (status) {
       case "In Stock":
         return <Badge className="bg-green-500 hover:bg-green-600">In Stock</Badge>
@@ -93,7 +101,7 @@ export function ProductInventory() {
     }
   }
 
-  const getStockPercentage = (stock, reorderPoint) => {
+  const getStockPercentage = (stock: number, reorderPoint: number) => {
     // Calculate percentage based on reorder point (100% = 2x reorder point)
     const percentage = (stock / (reorderPoint * 2)) * 100
     return Math.min(percentage, 100) // Cap at 100%

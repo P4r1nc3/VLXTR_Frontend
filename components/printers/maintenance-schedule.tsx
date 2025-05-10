@@ -59,7 +59,7 @@ const maintenanceTasks = [
 ]
 
 export function MaintenanceSchedule() {
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: "Completed" | "In Progress" | "Upcoming" | "Overdue") => {
     switch (status) {
       case "Completed":
         return <Badge className="bg-green-500 hover:bg-green-600">Completed</Badge>
@@ -74,7 +74,7 @@ export function MaintenanceSchedule() {
     }
   }
 
-  const getPriorityBadge = (priority) => {
+  const getPriorityBadge = (priority: "High" | "Medium" | "Low") => {
     switch (priority) {
       case "High":
         return (
@@ -127,7 +127,7 @@ export function MaintenanceSchedule() {
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <h3 className="font-medium">{task.task}</h3>
-                          {getPriorityBadge(task.priority)}
+                          {getPriorityBadge(task.priority as "High" | "Medium" | "Low")}
                         </div>
                         <p className="text-sm text-muted-foreground">Printer: {task.printer}</p>
                         <p className="text-sm text-muted-foreground">Assigned to: {task.assignedTo}</p>
@@ -156,7 +156,7 @@ export function MaintenanceSchedule() {
                           ) : (
                             <Calendar className="h-4 w-4 text-muted-foreground" />
                           )}
-                          <p className="text-sm">Status: {getStatusBadge(task.status)}</p>
+                          <p className="text-sm">Status: {getStatusBadge(task.status as "Upcoming" | "Overdue" | "Completed" | "In Progress")}</p>
                         </div>
                       </div>
                       <div className="flex items-center justify-end gap-2">
@@ -189,7 +189,7 @@ export function MaintenanceSchedule() {
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
                             <h3 className="font-medium">{task.task}</h3>
-                            {getPriorityBadge(task.priority)}
+                            {getPriorityBadge(task.priority as "High" | "Medium" | "Low")}
                           </div>
                           <p className="text-sm text-muted-foreground">Printer: {task.printer}</p>
                           <p className="text-sm text-muted-foreground">Assigned to: {task.assignedTo}</p>
@@ -204,7 +204,7 @@ export function MaintenanceSchedule() {
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
                             <Calendar className="h-4 w-4 text-muted-foreground" />
-                            <p className="text-sm">Status: {getStatusBadge(task.status)}</p>
+                            <p className="text-sm">Status: {getStatusBadge(task.status as "Upcoming" | "Overdue" | "Completed" | "In Progress")}</p>
                           </div>
                         </div>
                         <div className="flex items-center justify-end gap-2">

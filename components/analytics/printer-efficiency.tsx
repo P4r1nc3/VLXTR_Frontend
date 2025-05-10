@@ -24,12 +24,12 @@ const data = [
 export function PrinterEfficiency() {
   const { theme } = useTheme()
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: any[]; label?: string }) => {
     if (active && payload && payload.length) {
       return (
         <Card className="border-none shadow-lg">
           <CardContent className="p-2">
-            <p className="text-sm font-semibold">{new Date(label).toLocaleDateString()}</p>
+            <p className="text-sm font-semibold">{label ? new Date(label).toLocaleDateString() : "Invalid Date"}</p>
             <p className="text-sm text-muted-foreground">Utilization: {payload[0].value}%</p>
             <p className="text-sm text-muted-foreground">Success Rate: {payload[1].value}%</p>
           </CardContent>

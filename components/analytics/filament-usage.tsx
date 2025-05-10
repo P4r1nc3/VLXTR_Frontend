@@ -19,7 +19,7 @@ export function FilamentUsage() {
   const { theme } = useTheme()
   const colors = theme === "dark" ? DARK_COLORS : COLORS
 
-  const CustomTooltip = ({ active, payload }) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: any[] }) => {
     if (active && payload && payload.length) {
       return (
         <Card className="border-none shadow-lg">

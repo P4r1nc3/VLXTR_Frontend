@@ -7,8 +7,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "VLXTR - 3D Printing Workflow Management",
-  description: "Manage your BambuLab 3D printers and Allegro orders with VLXTR",
-    generator: 'v0.dev'
+  description: "Manage your BambuLab 3D printers and Allegro orders with VLXTR"
 }
 
 export default function RootLayout({
