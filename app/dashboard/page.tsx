@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PrinterStatus } from "@/components/dashboard/printer-status"
 import { RecentOrders } from "@/components/dashboard/recent-orders"
-import { Printer, Wrench, ShoppingCart, CogIcon as Coil } from "lucide-react"
+import { Printer, Wrench, ShoppingCart, Disc } from "lucide-react"
 
 export default function DashboardPage() {
   return (
@@ -49,7 +49,7 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Filament Usage</CardTitle>
-              <Coil className="h-4 w-4 text-muted-foreground" />
+              <Disc className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">1.2 kg</div>

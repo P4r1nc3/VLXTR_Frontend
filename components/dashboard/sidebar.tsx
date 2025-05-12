@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import {
   Home,
   BarChart2,
+  Disc,
   Printer,
   Package,
   ShoppingCart,
@@ -15,20 +16,36 @@ import {
   Menu,
   ChevronLeft,
   LogOut,
-  X, Wrench,
+  X,
+  Wrench,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip"
 
-const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: Home },
-  { name: "Analytics", href: "/dashboard/analytics", icon: BarChart2 },
-  { name: "Printers", href: "/dashboard/printers", icon: Printer },
-  { name: "Filament", href: "/dashboard/filament", icon: Package },
-  { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench },
-  { name: "Products", href: "/dashboard/products", icon: Package },
-  { name: "Purchases", href: "/dashboard/purchases", icon: ShoppingCart },
+const navigationGroups = [
+  {
+    title: "Overview",
+    items: [
+      { name: "Dashboard", href: "/dashboard", icon: Home },
+      { name: "Analytics", href: "/dashboard/analytics", icon: BarChart2 },
+    ],
+  },
+  {
+    title: "Production",
+    items: [
+      { name: "Printers", href: "/dashboard/printers", icon: Printer },
+      { name: "Filament", href: "/dashboard/filament", icon: Disc },
+      { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench },
+    ],
+  },
+  {
+    title: "Business",
+    items: [
+      { name: "Products", href: "/dashboard/products", icon: Package },
+      { name: "Purchases", href: "/dashboard/purchases", icon: ShoppingCart },
+    ],
+  },
 ]
 
 const bottomNavigation = [
@@ -110,12 +127,21 @@ export function Sidebar() {
                 </Button>
               </div>
             </div>
-            <div className="flex-1 overflow-auto py-2">
-              <nav className="grid gap-1 px-2">
-                {navigation.map((item) => (
-                    <NavItem key={item.name} item={item} />
-                ))}
-              </nav>
+            <div className="flex-1 overflow-auto py-2 space-y-6">
+              {navigationGroups.map((group) => (
+                  <div key={group.title} className="px-2">
+                    {!isCollapsed && (
+                        <div className="mb-2 px-3 text-xs font-semibold text-muted-foreground/70 uppercase tracking-wider">
+                          {group.title}
+                        </div>
+                    )}
+                    <nav className="grid gap-1">
+                      {group.items.map((item) => (
+                          <NavItem key={item.name} item={item} />
+                      ))}
+                    </nav>
+                  </div>
+              ))}
             </div>
             <div className="border-t border-border/40 p-2">
               <nav className="grid gap-1">
