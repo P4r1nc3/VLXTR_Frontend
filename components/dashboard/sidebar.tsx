@@ -25,6 +25,8 @@ const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: Home },
   { name: "Analytics", href: "/dashboard/analytics", icon: BarChart2 },
   { name: "Printers", href: "/dashboard/printers", icon: Printer },
+  { name: "Filament", href: "/dashboard/filament", icon: Package },
+  { name: "Maintenance", href: "/dashboard/maintenance", icon: Settings },
   { name: "Products", href: "/dashboard/products", icon: Package },
   { name: "Purchases", href: "/dashboard/purchases", icon: ShoppingCart },
 ]
@@ -41,100 +43,100 @@ export function Sidebar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
 
   const NavItem = ({ item, isBottom = false }) => (
-    <Tooltip delayDuration={0}>
-      <TooltipTrigger asChild>
-        <Link
-          href={item.href}
-          className={cn(
-            "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
-            pathname === item.href
-              ? "bg-primary/10 text-primary"
-              : "text-muted-foreground hover:bg-muted hover:text-foreground",
-            isCollapsed && "justify-center px-2",
-          )}
-          onClick={() => setIsMobileOpen(false)}
-        >
-          <item.icon className={cn("h-5 w-5", !isCollapsed && "mr-3")} />
-          {!isCollapsed && <span>{item.name}</span>}
-        </Link>
-      </TooltipTrigger>
-      {isCollapsed && (
-        <TooltipContent side="right" className="flex items-center gap-4">
-          {item.name}
-        </TooltipContent>
-      )}
-    </Tooltip>
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>
+          <Link
+              href={item.href}
+              className={cn(
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  pathname === item.href
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                  isCollapsed && "justify-center px-2",
+              )}
+              onClick={() => setIsMobileOpen(false)}
+          >
+            <item.icon className={cn("h-5 w-5", !isCollapsed && "mr-3")} />
+            {!isCollapsed && <span>{item.name}</span>}
+          </Link>
+        </TooltipTrigger>
+        {isCollapsed && (
+            <TooltipContent side="right" className="flex items-center gap-4">
+              {item.name}
+            </TooltipContent>
+        )}
+      </Tooltip>
   )
 
   return (
-    <TooltipProvider>
-      <>
-        <button
-          className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-background rounded-md shadow-md"
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-          aria-label="Toggle sidebar"
-        >
-          <Menu className="h-5 w-5" />
-        </button>
-        <div
-          className={cn(
-            "fixed inset-y-0 z-20 flex flex-col bg-card transition-all duration-300 ease-in-out lg:static",
-            isCollapsed ? "w-[72px]" : "w-64",
-            isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
-          )}
-        >
-          <div className="border-b border-border/40">
-            <div className={cn("flex h-16 items-center gap-2 px-4", isCollapsed && "justify-center px-2")}>
-              {/* Logo ONLY on desktop/large screens */}
-              {!isCollapsed && (
-                <Link href="/dashboard" className="hidden lg:flex items-center font-semibold">
-                  <span className="text-xl font-extrabold tracking-tight">VLXTR</span>
-                </Link>
+      <TooltipProvider>
+        <>
+          <button
+              className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-background rounded-md shadow-md"
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              aria-label="Toggle sidebar"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+          <div
+              className={cn(
+                  "fixed inset-y-0 z-20 flex flex-col bg-card transition-all duration-300 ease-in-out lg:static",
+                  isCollapsed ? "w-[72px]" : "w-64",
+                  isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
               )}
-              <Button
-                variant="ghost"
-                size="sm"
-                className={cn("ml-auto h-8 w-8", isCollapsed && "ml-0")}
-                onClick={() => setIsCollapsed(!isCollapsed)}
-              >
-                <ChevronLeft className={cn("h-4 w-4 transition-transform", isCollapsed && "rotate-180")} />
-                <span className="sr-only">{isCollapsed ? "Expand" : "Collapse"} Sidebar</span>
-              </Button>
+          >
+            <div className="border-b border-border/40">
+              <div className={cn("flex h-16 items-center gap-2 px-4", isCollapsed && "justify-center px-2")}>
+                {/* Logo ONLY on desktop/large screens */}
+                {!isCollapsed && (
+                    <Link href="/dashboard" className="hidden lg:flex items-center font-semibold">
+                      <span className="text-xl font-extrabold tracking-tight">VLXTR</span>
+                    </Link>
+                )}
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    className={cn("ml-auto h-8 w-8", isCollapsed && "ml-0")}
+                    onClick={() => setIsCollapsed(!isCollapsed)}
+                >
+                  <ChevronLeft className={cn("h-4 w-4 transition-transform", isCollapsed && "rotate-180")} />
+                  <span className="sr-only">{isCollapsed ? "Expand" : "Collapse"} Sidebar</span>
+                </Button>
 
-              {/* Mobile close button */}
-              <Button variant="ghost" size="sm" className="lg:hidden h-8 w-8" onClick={() => setIsMobileOpen(false)}>
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close Sidebar</span>
-              </Button>
+                {/* Mobile close button */}
+                <Button variant="ghost" size="sm" className="lg:hidden h-8 w-8" onClick={() => setIsMobileOpen(false)}>
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close Sidebar</span>
+                </Button>
+              </div>
+            </div>
+            <div className="flex-1 overflow-auto py-2">
+              <nav className="grid gap-1 px-2">
+                {navigation.map((item) => (
+                    <NavItem key={item.name} item={item} />
+                ))}
+              </nav>
+            </div>
+            <div className="border-t border-border/40 p-2">
+              <nav className="grid gap-1">
+                {bottomNavigation.map((item) => (
+                    <NavItem key={item.name} item={item} isBottom />
+                ))}
+                <Link
+                    href="/"
+                    className={cn(
+                        "flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+                        isCollapsed && "justify-center px-2",
+                    )}
+                    onClick={() => setIsMobileOpen(false)}
+                >
+                  <LogOut className={cn("h-5 w-5", !isCollapsed && "mr-3")} />
+                  {!isCollapsed && <span>Logout</span>}
+                </Link>
+              </nav>
             </div>
           </div>
-          <div className="flex-1 overflow-auto py-2">
-            <nav className="grid gap-1 px-2">
-              {navigation.map((item) => (
-                <NavItem key={item.name} item={item} />
-              ))}
-            </nav>
-          </div>
-          <div className="border-t border-border/40 p-2">
-            <nav className="grid gap-1">
-              {bottomNavigation.map((item) => (
-                <NavItem key={item.name} item={item} isBottom />
-              ))}
-              <Link
-                href="/"
-                className={cn(
-                  "flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-                  isCollapsed && "justify-center px-2",
-                )}
-                onClick={() => setIsMobileOpen(false)}
-              >
-                <LogOut className={cn("h-5 w-5", !isCollapsed && "mr-3")} />
-                {!isCollapsed && <span>Logout</span>}
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </>
-    </TooltipProvider>
+        </>
+      </TooltipProvider>
   )
 }

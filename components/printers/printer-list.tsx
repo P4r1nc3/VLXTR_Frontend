@@ -102,7 +102,11 @@ const printers = [
   },
 ]
 
-export function PrinterList() {
+interface PrinterListProps {
+  statusFilter?: string
+}
+
+export function PrinterList({ statusFilter = "all" }: PrinterListProps) {
   const getStatusColor = (status: "Printing" | "Paused" | "Idle" | "Maintenance" | string) => {
     switch (status) {
       case "Printing":
@@ -133,118 +137,122 @@ export function PrinterList() {
     }
   }
 
-  return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {printers.map((printer) => (
-        <Card key={printer.id} className="overflow-hidden">
-          <CardHeader className="p-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className={`h-2.5 w-2.5 rounded-full ${getStatusColor(printer.status)}`}></div>
-                <CardTitle className="text-lg">{printer.name}</CardTitle>
-              </div>
-              {getStatusBadge(printer.status)}
-            </div>
-            <CardDescription>
-              {printer.status === "Printing" || printer.status === "Paused" ? (
-                <>Printing: {printer.model}</>
-              ) : (
-                <>Status: {printer.status}</>
-              )}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-0">
-            <div className="aspect-video bg-white flex items-center justify-center p-2">
-              <img
-                src={printer.image || "/placeholder.svg"}
-                alt={`Preview of ${printer.name}`}
-                className="h-full w-auto object-contain max-h-[200px]"
-              />
-            </div>
-            <div className="p-4 space-y-4">
-              {(printer.status === "Printing" || printer.status === "Paused") && (
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span>Progress: {printer.progress}%</span>
-                    <span>Time remaining: {printer.timeRemaining}</span>
-                  </div>
-                  <Progress value={printer.progress} className="h-2" />
-                </div>
-              )}
-              <div className="grid grid-cols-3 gap-2 text-sm">
-                <div className="space-y-1">
-                  <p className="text-muted-foreground">Nozzle</p>
-                  <p className="font-medium">{printer.temperature.nozzle}°C</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-muted-foreground">Bed</p>
-                  <p className="font-medium">{printer.temperature.bed}°C</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-muted-foreground">Chamber</p>
-                  <p className="font-medium">{printer.temperature.chamber}°C</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="space-y-1">
-                  <p className="text-muted-foreground">Location</p>
-                  <p className="font-medium">{printer.location}</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-muted-foreground">Total Prints</p>
-                  <p className="font-medium">{printer.totalPrints}</p>
-                </div>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground">Filament</p>
-                <p className="text-sm font-medium">{printer.filament}</p>
-                {printer.filamentRemaining !== "-" && <p className="text-sm">Remaining: {printer.filamentRemaining}</p>}
-              </div>
+  // Filter printers based on status
+  const filteredPrinters =
+      statusFilter === "all" ? printers : printers.filter((printer) => printer.status === statusFilter)
 
-              {/* Improved responsive button layout */}
-              <div className="flex flex-wrap items-center gap-2">
-                {printer.status === "Printing" && (
-                  <>
+  return (
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {filteredPrinters.map((printer) => (
+            <Card key={printer.id} className="overflow-hidden">
+              <CardHeader className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className={`h-2.5 w-2.5 rounded-full ${getStatusColor(printer.status)}`}></div>
+                    <CardTitle className="text-lg">{printer.name}</CardTitle>
+                  </div>
+                  {getStatusBadge(printer.status)}
+                </div>
+                <CardDescription>
+                  {printer.status === "Printing" || printer.status === "Paused" ? (
+                      <>Printing: {printer.model}</>
+                  ) : (
+                      <>Status: {printer.status}</>
+                  )}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="aspect-video bg-white flex items-center justify-center p-2">
+                  <img
+                      src={printer.image || "/placeholder.svg"}
+                      alt={`Preview of ${printer.name}`}
+                      className="h-full w-auto object-contain max-h-[200px]"
+                  />
+                </div>
+                <div className="p-4 space-y-4">
+                  {(printer.status === "Printing" || printer.status === "Paused") && (
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-sm">
+                          <span>Progress: {printer.progress}%</span>
+                          <span>Time remaining: {printer.timeRemaining}</span>
+                        </div>
+                        <Progress value={printer.progress} className="h-2" />
+                      </div>
+                  )}
+                  <div className="grid grid-cols-3 gap-2 text-sm">
+                    <div className="space-y-1">
+                      <p className="text-muted-foreground">Nozzle</p>
+                      <p className="font-medium">{printer.temperature.nozzle}°C</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-muted-foreground">Bed</p>
+                      <p className="font-medium">{printer.temperature.bed}°C</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-muted-foreground">Chamber</p>
+                      <p className="font-medium">{printer.temperature.chamber}°C</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div className="space-y-1">
+                      <p className="text-muted-foreground">Location</p>
+                      <p className="font-medium">{printer.location}</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-muted-foreground">Total Prints</p>
+                      <p className="font-medium">{printer.totalPrints}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Filament</p>
+                    <p className="text-sm font-medium">{printer.filament}</p>
+                    {printer.filamentRemaining !== "-" && <p className="text-sm">Remaining: {printer.filamentRemaining}</p>}
+                  </div>
+
+                  {/* Improved responsive button layout */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {printer.status === "Printing" && (
+                        <>
+                          <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
+                            <Pause className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                            Pause
+                          </Button>
+                          <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
+                            <StopCircle className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                            Stop
+                          </Button>
+                        </>
+                    )}
+                    {printer.status === "Paused" && (
+                        <>
+                          <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
+                            <Play className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                            Resume
+                          </Button>
+                          <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
+                            <StopCircle className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                            Stop
+                          </Button>
+                        </>
+                    )}
+                    {printer.status === "Idle" && (
+                        <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
+                          <Play className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                          Start Print
+                        </Button>
+                    )}
                     <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
-                      <Pause className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                      Pause
+                      <Eye className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                      View
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
-                      <StopCircle className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                      Stop
+                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <Settings className="h-4 w-4" />
                     </Button>
-                  </>
-                )}
-                {printer.status === "Paused" && (
-                  <>
-                    <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
-                      <Play className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                      Resume
-                    </Button>
-                    <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
-                      <StopCircle className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                      Stop
-                    </Button>
-                  </>
-                )}
-                {printer.status === "Idle" && (
-                  <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
-                    <Play className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                    Start Print
-                  </Button>
-                )}
-                <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
-                  <Eye className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                  View
-                </Button>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <Settings className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+        ))}
+      </div>
   )
 }

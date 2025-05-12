@@ -1,17 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { PrinterList } from "@/components/printers/printer-list"
-import { FilamentInventory } from "@/components/printers/filament-inventory"
-import { MaintenanceSchedule } from "@/components/printers/maintenance-schedule"
 import { Plus, RefreshCcw } from "lucide-react"
 import { AddPrinterModal } from "@/components/printers/add-printer-modal"
 
 export default function PrintersPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [statusFilter, setStatusFilter] = useState("all")
 
   const handleAddPrinter = (printerData: {
     ip: string
@@ -40,23 +38,29 @@ export default function PrintersPage() {
           </div>
         </div>
 
-        <Tabs defaultValue="printers" className="space-y-4">
+        <Tabs defaultValue="all" className="space-y-4" onValueChange={setStatusFilter}>
           <TabsList>
-            <TabsTrigger value="printers">Printers</TabsTrigger>
-            <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
-            <TabsTrigger value="filament">Filament</TabsTrigger>
+            <TabsTrigger value="all">All Printers</TabsTrigger>
+            <TabsTrigger value="Printing">Printing</TabsTrigger>
+            <TabsTrigger value="Idle">Idle</TabsTrigger>
+            <TabsTrigger value="Paused">Paused</TabsTrigger>
+            <TabsTrigger value="Maintenance">Maintenance</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="printers" className="space-y-4">
-            <PrinterList />
+          <TabsContent value="all" className="space-y-4">
+            <PrinterList statusFilter="all" />
           </TabsContent>
-
-          <TabsContent value="maintenance" className="space-y-4">
-            <MaintenanceSchedule />
+          <TabsContent value="Printing" className="space-y-4">
+            <PrinterList statusFilter="Printing" />
           </TabsContent>
-
-          <TabsContent value="filament" className="space-y-4">
-            <FilamentInventory />
+          <TabsContent value="Idle" className="space-y-4">
+            <PrinterList statusFilter="Idle" />
+          </TabsContent>
+          <TabsContent value="Paused" className="space-y-4">
+            <PrinterList statusFilter="Paused" />
+          </TabsContent>
+          <TabsContent value="Maintenance" className="space-y-4">
+            <PrinterList statusFilter="Maintenance" />
           </TabsContent>
         </Tabs>
       </div>
