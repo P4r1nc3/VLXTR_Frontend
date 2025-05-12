@@ -15,7 +15,7 @@ import {
   Menu,
   ChevronLeft,
   LogOut,
-  X,
+  X, Wrench,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -26,7 +26,7 @@ const navigation = [
   { name: "Analytics", href: "/dashboard/analytics", icon: BarChart2 },
   { name: "Printers", href: "/dashboard/printers", icon: Printer },
   { name: "Filament", href: "/dashboard/filament", icon: Package },
-  { name: "Maintenance", href: "/dashboard/maintenance", icon: Settings },
+  { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench },
   { name: "Products", href: "/dashboard/products", icon: Package },
   { name: "Purchases", href: "/dashboard/purchases", icon: ShoppingCart },
 ]
