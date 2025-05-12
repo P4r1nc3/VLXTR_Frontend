@@ -1,22 +1,13 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { FilamentInventory } from "@/components/filament/filament-inventory"
-import { Plus, RefreshCcw } from "lucide-react"
 import { useState } from "react"
+import { FilamentList } from "@/components/filament/filament-list"
 import { AddFilamentModal } from "@/components/filament/add-filament-modal"
+import { Button } from "@/components/ui/button"
+import {Plus, RefreshCcw} from "lucide-react"
 
 export default function FilamentPage() {
     const [isModalOpen, setIsModalOpen] = useState(false)
-
-    const handleAddFilament = (filamentData: {
-        type: string
-        color: string
-        weight: string
-        manufacturer: string
-    }) => {
-        console.log("Adding filament:", filamentData)
-    }
 
     return (
         <div className="space-y-6">
@@ -29,15 +20,14 @@ export default function FilamentPage() {
                     </Button>
 
                     <Button size="sm" className="h-9 gap-1" onClick={() => setIsModalOpen(true)}>
-                        <Plus className="h-4 w-4" />
-                        <span className="hidden sm:inline">Add Filament</span>
+                        <Plus className="mr-2 h-4 w-4" /> Add Filament
                     </Button>
 
-                    <AddFilamentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleAddFilament} />
+                    <AddFilamentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={() => {}} />
                 </div>
             </div>
 
-            <FilamentInventory />
+            <FilamentList />
         </div>
     )
 }

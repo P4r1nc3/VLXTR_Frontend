@@ -40,7 +40,7 @@ export default function PrintersPage() {
 
         <Tabs defaultValue="all" className="space-y-4" onValueChange={setStatusFilter}>
           <TabsList>
-            <TabsTrigger value="all">All Printers</TabsTrigger>
+            <TabsTrigger value="all">All</TabsTrigger>
             <TabsTrigger value="Printing">Printing</TabsTrigger>
             <TabsTrigger value="Idle">Idle</TabsTrigger>
             <TabsTrigger value="Paused">Paused</TabsTrigger>
