@@ -1,11 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { ProductList } from "@/components/products/product-list"
-import { ProductCategories } from "@/components/products/product-categories"
-import { ProductInventory } from "@/components/products/product-inventory"
 import { AddProductModal } from "@/components/products/add-product-modal"
 import { Plus, RefreshCcw } from "lucide-react"
 
@@ -31,25 +28,7 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        <Tabs defaultValue="all" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="all">All Products</TabsTrigger>
-            <TabsTrigger value="categories">Categories</TabsTrigger>
-            <TabsTrigger value="inventory">Inventory</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="all" className="space-y-4">
-            <ProductList />
-          </TabsContent>
-
-          <TabsContent value="categories" className="space-y-4">
-            <ProductCategories />
-          </TabsContent>
-
-          <TabsContent value="inventory" className="space-y-4">
-            <ProductInventory />
-          </TabsContent>
-        </Tabs>
+        <ProductList />
 
         <AddProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>

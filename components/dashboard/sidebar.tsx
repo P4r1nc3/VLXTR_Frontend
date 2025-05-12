@@ -18,6 +18,8 @@ import {
   LogOut,
   X,
   Wrench,
+  Tags,
+  Boxes,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -43,6 +45,8 @@ const navigationGroups = [
     title: "Business",
     items: [
       { name: "Products", href: "/dashboard/products", icon: Package },
+      { name: "Categories", href: "/dashboard/categories", icon: Tags },
+      { name: "Inventory", href: "/dashboard/inventory", icon: Boxes },
       { name: "Orders", href: "/dashboard/orders", icon: ShoppingCart },
     ],
   },
