@@ -156,7 +156,7 @@ export function FilamentList() {
   return (
       <Tabs defaultValue="all">
         <TabsList>
-          <TabsTrigger value="all">All</TabsTrigger>
+          <TabsTrigger value="all">All Filaments</TabsTrigger>
           <TabsTrigger value="pla">PLA</TabsTrigger>
           <TabsTrigger value="petg">PETG</TabsTrigger>
           <TabsTrigger value="abs">ABS</TabsTrigger>

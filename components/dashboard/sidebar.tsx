@@ -43,7 +43,7 @@ const navigationGroups = [
     title: "Business",
     items: [
       { name: "Products", href: "/dashboard/products", icon: Package },
-      { name: "Purchases", href: "/dashboard/purchases", icon: ShoppingCart },
+      { name: "Orders", href: "/dashboard/orders", icon: ShoppingCart },
     ],
   },
 ]
