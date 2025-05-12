@@ -13,11 +13,6 @@ export default function HelpPage() {
         <p className="text-muted-foreground">Support resources and documentation for VLXTR platform</p>
       </div>
 
-      <div className="relative">
-        <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-        <Input placeholder="Search for help..." className="pl-10 w-full md:w-1/2 lg:w-1/3" />
-      </div>
-
       <Tabs defaultValue="faq" className="space-y-4">
         <TabsList>
           <TabsTrigger value="faq">FAQ</TabsTrigger>

@@ -23,28 +23,28 @@ export default function TeamPage() {
           <h1 className="text-3xl font-bold tracking-tight">Team Management</h1>
           <p className="text-muted-foreground">Manage your team members and their access permissions</p>
         </div>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" /> Add Team Member
-        </Button>
+
+        <div className="flex items-center gap-2">
+          <Select defaultValue="all">
+            <SelectTrigger className="w-full sm:w-[180px]">
+              <SelectValue placeholder="Filter by role" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Roles</SelectItem>
+              <SelectItem value="admin">Admin</SelectItem>
+              <SelectItem value="manager">Manager</SelectItem>
+              <SelectItem value="member">Member</SelectItem>
+              <SelectItem value="viewer">Viewer</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button>
+            <Plus className="mr-2 h-4 w-4" /> Add Team Member
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <div className="relative w-full sm:w-72">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search team members..." className="pl-9" />
-        </div>
-        <Select defaultValue="all">
-          <SelectTrigger className="w-full sm:w-[180px]">
-            <SelectValue placeholder="Filter by role" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Roles</SelectItem>
-            <SelectItem value="admin">Admin</SelectItem>
-            <SelectItem value="manager">Manager</SelectItem>
-            <SelectItem value="member">Member</SelectItem>
-            <SelectItem value="viewer">Viewer</SelectItem>
-          </SelectContent>
-        </Select>
+
       </div>
 
       <Tabs defaultValue="members" className="space-y-4">
