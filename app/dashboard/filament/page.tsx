@@ -1,10 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { FilamentInventory } from "@/components/filaments/filament-inventory"
+import { FilamentInventory } from "@/components/filament/filament-inventory"
 import { Plus, RefreshCcw } from "lucide-react"
 import { useState } from "react"
-import { AddFilamentModal } from "@/components/filaments/add-filament-modal"
+import { AddFilamentModal } from "@/components/filament/add-filament-modal"
 
 export default function FilamentPage() {
     const [isModalOpen, setIsModalOpen] = useState(false)
