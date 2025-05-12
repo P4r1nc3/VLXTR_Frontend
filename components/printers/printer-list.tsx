@@ -152,11 +152,7 @@ function PrinterCard({ printer }: PrinterCardProps) {
             {getStatusBadge(printer.status)}
           </div>
           <CardDescription>
-            {printer.status === "Printing" || printer.status === "Paused" ? (
-                <>Printing: {printer.model}</>
-            ) : (
-                <>Status: {printer.status}</>
-            )}
+            Printing: {printer.status === "Printing" || printer.status === "Paused" ? printer.model : "N/A"}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
@@ -168,15 +164,25 @@ function PrinterCard({ printer }: PrinterCardProps) {
             />
           </div>
           <div className="p-4 space-y-4">
-            {(printer.status === "Printing" || printer.status === "Paused") && (
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span>Progress: {printer.progress}%</span>
-                    <span>Time remaining: {printer.timeRemaining}</span>
-                  </div>
-                  <Progress value={printer.progress} className="h-2" />
-                </div>
-            )}
+            <div className="space-y-2">
+              {printer.status === "Printing" || printer.status === "Paused" ? (
+                  <>
+                    <div className="flex items-center justify-between text-sm">
+                      <span>Progress: {printer.progress}%</span>
+                      <span>Time remaining: {printer.timeRemaining}</span>
+                    </div>
+                    <Progress value={printer.progress} className="h-2" />
+                  </>
+              ) : (
+                  <>
+                    <div className="flex items-center justify-between text-sm">
+                      <span>Progress: N/A</span>
+                      <span>Time remaining: N/A</span>
+                    </div>
+                    <Progress value={0} className="h-2" />
+                  </>
+              )}
+            </div>
             <div className="grid grid-cols-3 gap-2 text-sm">
               <div className="space-y-1">
                 <p className="text-muted-foreground">Nozzle</p>
@@ -191,24 +197,26 @@ function PrinterCard({ printer }: PrinterCardProps) {
                 <p className="font-medium">{printer.temperature.chamber}°C</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div className="space-y-1">
-                <p className="text-muted-foreground">Location</p>
-                <p className="font-medium">{printer.location}</p>
-              </div>
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div className="space-y-1">
                 <p className="text-muted-foreground">Total Prints</p>
                 <p className="font-medium">{printer.totalPrints}</p>
               </div>
+              <div className="space-y-1 col-span-2">
+                <p className="text-muted-foreground">Location</p>
+                <p className="font-medium">{printer.location}</p>
+              </div>
             </div>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Filament</p>
-              <p className="text-sm font-medium">{printer.filament}</p>
-              {printer.filamentRemaining !== "-" && <p className="text-sm">Remaining: {printer.filamentRemaining}</p>}
+              <p className="text-sm font-medium">{printer.filament !== "-" ? printer.filament : "N/A"}</p>
+              <p className="text-sm">
+                Remaining: {printer.filamentRemaining !== "-" ? printer.filamentRemaining : "N/A"}
+              </p>
             </div>
 
-            {/* Improved responsive button layout */}
-            <div className="flex flex-wrap items-center gap-2">
+            {/* Fixed position button layout */}
+            <div className="flex flex-wrap items-center gap-2 mt-auto">
               {printer.status === "Printing" && (
                   <>
                     <Button variant="outline" size="sm" className="flex-1 min-w-[80px] text-xs sm:text-sm">
