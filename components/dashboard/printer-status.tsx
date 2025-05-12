@@ -48,7 +48,7 @@ const printers = [
   },
   {
     id: 5,
-    name: "BambuLab X1C Carbon",
+    name: "BambuLab X1C",
     status: "Maintenance",
     model: "-",
     progress: 0,

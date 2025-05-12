@@ -1,15 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { PrinterList } from "@/components/printers/printer-list"
 import { Plus, RefreshCcw } from "lucide-react"
 import { AddPrinterModal } from "@/components/printers/add-printer-modal"
+import { PrinterList } from "@/components/printers/printer-list"
 
 export default function PrintersPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [statusFilter, setStatusFilter] = useState("all")
 
   const handleAddPrinter = (printerData: {
     ip: string
@@ -17,6 +15,7 @@ export default function PrintersPage() {
     access_code: string
   }) => {
     console.log("Adding printer:", printerData)
+    // Here you would typically call an API to add the printer
   }
 
   return (
@@ -38,31 +37,7 @@ export default function PrintersPage() {
           </div>
         </div>
 
-        <Tabs defaultValue="all" className="space-y-4" onValueChange={setStatusFilter}>
-          <TabsList>
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="Printing">Printing</TabsTrigger>
-            <TabsTrigger value="Idle">Idle</TabsTrigger>
-            <TabsTrigger value="Paused">Paused</TabsTrigger>
-            <TabsTrigger value="Maintenance">Maintenance</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="all" className="space-y-4">
-            <PrinterList statusFilter="all" />
-          </TabsContent>
-          <TabsContent value="Printing" className="space-y-4">
-            <PrinterList statusFilter="Printing" />
-          </TabsContent>
-          <TabsContent value="Idle" className="space-y-4">
-            <PrinterList statusFilter="Idle" />
-          </TabsContent>
-          <TabsContent value="Paused" className="space-y-4">
-            <PrinterList statusFilter="Paused" />
-          </TabsContent>
-          <TabsContent value="Maintenance" className="space-y-4">
-            <PrinterList statusFilter="Maintenance" />
-          </TabsContent>
-        </Tabs>
+        <PrinterList />
       </div>
   )
 }
