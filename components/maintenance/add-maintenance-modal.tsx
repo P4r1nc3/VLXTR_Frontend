@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { CalendarIcon } from "lucide-react"
+import {CalendarIcon, Plus, RefreshCcw} from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
@@ -28,7 +28,8 @@ export function AddMaintenanceModal() {
         <Dialog>
             <DialogTrigger asChild>
                 <Button size="sm" className="h-9 gap-1">
-                    Add Task
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Maintenance
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
