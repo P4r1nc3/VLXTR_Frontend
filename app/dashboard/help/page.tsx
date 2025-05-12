@@ -10,7 +10,7 @@ export default function HelpPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Help Center</h1>
-        <p className="text-muted-foreground">Find answers to common questions and learn how to use the platform</p>
+        <p className="text-muted-foreground">Support resources and documentation for VLXTR platform</p>
       </div>
 
       <div className="relative">
