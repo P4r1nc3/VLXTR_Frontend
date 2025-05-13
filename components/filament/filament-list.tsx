@@ -82,7 +82,7 @@ const filaments = [
     brand: "BambuLab",
     remaining: 15,
     weight: "1kg",
-    status: "Low",
+    status: "Available",
     printer: "-",
     cost: "$29.99",
   },
@@ -146,8 +146,6 @@ export function FilamentList() {
       return <Badge className="bg-blue-500 hover:bg-blue-600">In Use</Badge>
     } else if (status === "Available") {
       return <Badge className="bg-green-500 hover:bg-green-600">Available</Badge>
-    } else if (status === "Low" || remaining <= 20) {
-      return <Badge className="bg-yellow-500 hover:bg-yellow-600">Low</Badge>
     } else {
       return <Badge>Unknown</Badge>
     }
