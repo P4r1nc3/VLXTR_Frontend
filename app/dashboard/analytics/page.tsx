@@ -1,7 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { DateRangePicker } from "@/components/dashboard/date-range-picker"
 import { PrinterEfficiency } from "@/components/analytics/printer-efficiency"
 import { OrdersAnalytics } from "@/components/analytics/orders-analytics"
 import { FilamentUsage } from "@/components/analytics/filament-usage"
@@ -17,13 +16,12 @@ export default function AnalyticsPage() {
           <p className="text-muted-foreground">Detailed insights into your printing performance</p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <DateRangePicker />
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" className="h-9 gap-1">
               <RefreshCcw className="h-4 w-4" />
               <span className="hidden sm:inline">Refresh</span>
             </Button>
-            <Button variant="outline" size="sm" className="h-9 gap-1">
+            <Button size="sm" className="h-9 gap-1">
               <Download className="h-4 w-4" />
               <span className="hidden sm:inline">Export</span>
             </Button>
