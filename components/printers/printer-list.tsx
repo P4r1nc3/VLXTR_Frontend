@@ -280,35 +280,35 @@ export function PrinterList() {
           </TabsList>
 
           <TabsContent value="all" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
               {filteredPrinters.map((printer) => (
                   <PrinterCard key={printer.id} printer={printer} />
               ))}
             </div>
           </TabsContent>
           <TabsContent value="Printing" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
               {filteredPrinters.map((printer) => (
                   <PrinterCard key={printer.id} printer={printer} />
               ))}
             </div>
           </TabsContent>
           <TabsContent value="Idle" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
               {filteredPrinters.map((printer) => (
                   <PrinterCard key={printer.id} printer={printer} />
               ))}
             </div>
           </TabsContent>
           <TabsContent value="Paused" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
               {filteredPrinters.map((printer) => (
                   <PrinterCard key={printer.id} printer={printer} />
               ))}
             </div>
           </TabsContent>
           <TabsContent value="Maintenance" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
               {filteredPrinters.map((printer) => (
                   <PrinterCard key={printer.id} printer={printer} />
               ))}
