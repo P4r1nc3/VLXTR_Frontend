@@ -29,10 +29,10 @@ export default function FilamentPage() {
                         <Plus className="h-4 w-4" />
                         <span className="hidden sm:inline">Add Filament</span>
                     </Button>
+                    <AddFilamentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
                 </div>
             </div>
             <FilamentList />
-            <AddFilamentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
 }

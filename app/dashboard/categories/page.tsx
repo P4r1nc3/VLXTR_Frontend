@@ -29,10 +29,10 @@ export default function CategoriesPage() {
                         <Plus className="h-4 w-4" />
                         <span className="hidden sm:inline">Add Category</span>
                     </Button>
+                    <AddCategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
                 </div>
             </div>
             <CategoryList />
-            <AddCategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
 }

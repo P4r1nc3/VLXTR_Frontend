@@ -29,10 +29,10 @@ export default function PrintersPage() {
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">Add Printer</span>
             </Button>
+            <AddPrinterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
         <PrinterList />
-        <AddPrinterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>
   )
 }

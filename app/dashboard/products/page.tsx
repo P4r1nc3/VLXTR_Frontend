@@ -29,10 +29,10 @@ export default function ProductsPage() {
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">Add Product</span>
             </Button>
+            <AddProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
         <ProductList />
-        <AddProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>
   )
 }

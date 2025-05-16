@@ -29,10 +29,10 @@ export default function MaintenancePage() {
                         <Plus className="h-4 w-4" />
                         <span className="hidden sm:inline">Add Maintenance</span>
                     </Button>
+                    <AddMaintenanceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
                 </div>
             </div>
             <MaintenanceList />
-            <AddMaintenanceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
 }
