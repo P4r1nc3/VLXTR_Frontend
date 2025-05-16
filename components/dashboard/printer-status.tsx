@@ -18,26 +18,6 @@ const printers = [
   },
   {
     id: 2,
-    name: "BambuLab P1P",
-    status: "Printing",
-    model: "Phone Stand",
-    progress: 32,
-    timeRemaining: "2h 45m",
-    filament: "PETG - Blue",
-    filamentRemaining: "45%",
-  },
-  {
-    id: 3,
-    name: "BambuLab X1",
-    status: "Idle",
-    model: "-",
-    progress: 0,
-    timeRemaining: "-",
-    filament: "PLA - White",
-    filamentRemaining: "92%",
-  },
-  {
-    id: 4,
     name: "BambuLab P1S",
     status: "Paused",
     model: "Desk Organizer",
@@ -47,7 +27,7 @@ const printers = [
     filamentRemaining: "23%",
   },
   {
-    id: 5,
+    id: 3,
     name: "BambuLab X1C",
     status: "Maintenance",
     model: "-",
@@ -149,6 +129,9 @@ export function PrinterStatus() {
           )}
         </div>
       ))}
+      <Button variant="outline" className="w-full">
+        View all printers
+      </Button>
     </div>
   )
 }
