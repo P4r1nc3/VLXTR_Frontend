@@ -15,12 +15,12 @@ export default function PurchasesPage() {
                 </div>
                 <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm" className="h-9 gap-1">
-                        <RefreshCcw className="h-4 w-4" />
-                        <span className="hidden sm:inline">Refresh</span>
+                        <Filter className="h-4 w-4" />
+                        <span>Filter</span>
                     </Button>
                     <Button variant="outline" size="sm" className="h-9 gap-1">
-                        <Filter className="h-4 w-4" />
-                        <span className="hidden sm:inline">Filter</span>
+                        <RefreshCcw className="h-4 w-4" />
+                        <span className="hidden sm:inline">Refresh</span>
                     </Button>
                     <Button size="sm" className="h-9 gap-1">
                         <Download className="h-4 w-4" />

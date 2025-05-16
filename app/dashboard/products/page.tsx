@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ProductList } from "@/components/products/product-list"
 import { AddProductModal } from "@/components/products/add-product-modal"
-import { Plus, RefreshCcw } from "lucide-react"
+import {Filter, Plus, RefreshCcw} from "lucide-react"
 
 export default function ProductsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -18,6 +18,10 @@ export default function ProductsPage() {
           </div>
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" className="h-9 gap-1">
+              <Filter className="h-4 w-4" />
+              <span>Filter</span>
+            </Button>
+            <Button variant="outline" size="sm" className="h-9 gap-1">
               <RefreshCcw className="h-4 w-4" />
               <span className="hidden sm:inline">Refresh</span>
             </Button>
@@ -27,9 +31,7 @@ export default function ProductsPage() {
             </Button>
           </div>
         </div>
-
         <ProductList />
-
         <AddProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>
   )

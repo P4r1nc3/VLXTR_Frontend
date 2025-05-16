@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Plus, RefreshCcw } from "lucide-react"
+import {Filter, Plus, RefreshCcw} from "lucide-react"
 import { CategoryList } from "@/components/categories/category-list"
 import { AddCategoryModal } from "@/components/categories/add-category-modal"
 
@@ -18,6 +18,10 @@ export default function CategoriesPage() {
                 </div>
                 <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm" className="h-9 gap-1">
+                        <Filter className="h-4 w-4" />
+                        <span>Filter</span>
+                    </Button>
+                    <Button variant="outline" size="sm" className="h-9 gap-1">
                         <RefreshCcw className="h-4 w-4" />
                         <span className="hidden sm:inline">Refresh</span>
                     </Button>
@@ -27,9 +31,7 @@ export default function CategoriesPage() {
                     </Button>
                 </div>
             </div>
-
             <CategoryList />
-
             <AddCategoryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
