@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 const orders = [
   {
@@ -112,7 +113,9 @@ export function RecentOrders() {
         </div>
       ))}
       <Button variant="outline" className="w-full">
-        View all orders
+        <Link href="/dashboard/orders">
+          View all orders
+        </Link>
       </Button>
     </div>
   )

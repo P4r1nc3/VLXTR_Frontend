@@ -4,6 +4,7 @@ import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Pause, Play, StopCircle, Eye } from "lucide-react"
+import Link from "next/link"
 
 const printers = [
   {
@@ -129,8 +130,10 @@ export function PrinterStatus() {
           )}
         </div>
       ))}
-      <Button variant="outline" className="w-full">
-        View all printers
+      <Button variant="outline" className="w-full" asChild>
+        <Link href="/dashboard/printers">
+          View all printers
+        </Link>
       </Button>
     </div>
   )
