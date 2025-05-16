@@ -1,11 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { MaintenanceList } from "@/components/maintenance/maintenance-list"
 import { AddMaintenanceModal } from "@/components/maintenance/add-maintenance-modal"
-import {Filter, RefreshCcw} from "lucide-react"
+import { Filter, Plus, RefreshCcw } from "lucide-react"
 
 export default function MaintenancePage() {
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -22,10 +25,14 @@ export default function MaintenancePage() {
                         <RefreshCcw className="h-4 w-4" />
                         <span className="hidden sm:inline">Refresh</span>
                     </Button>
+                    <Button size="sm" className="h-9 gap-1" onClick={() => setIsModalOpen(true)}>
+                        <Plus className="h-4 w-4" />
+                        <span className="hidden sm:inline">Add Maintenance</span>
+                    </Button>
                 </div>
             </div>
             <MaintenanceList />
-            <AddMaintenanceModal />
+            <AddMaintenanceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
 }

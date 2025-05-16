@@ -9,17 +9,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { toast } from "@/hooks/use-toast"
 
 interface AddFilamentModalProps {
     isOpen: boolean
     onClose: () => void
-    onSubmit: (filamentData: {
-        brand: string
-        type: string
-        color: string
-        weight: string
-        cost: string
-    }) => void
 }
 
 const filamentTypes = ["PLA", "PETG", "ABS", "TPU", "HIPS", "Nylon", "PC", "ASA", "PVA"]
@@ -40,7 +34,8 @@ const filamentColors = [
     "Clear",
 ]
 
-export function AddFilamentModal({ isOpen, onClose, onSubmit }: AddFilamentModalProps) {
+export function AddFilamentModal({ isOpen, onClose }: AddFilamentModalProps) {
+    const [isLoading, setIsLoading] = useState(false)
     const [formData, setFormData] = useState({
         brand: "",
         type: "PLA",
@@ -85,38 +80,49 @@ export function AddFilamentModal({ isOpen, onClose, onSubmit }: AddFilamentModal
         return !Object.values(newErrors).some((error) => error)
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
+    const handleChange = (name: string, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [name]: value,
         }))
     }
 
-    const handleSelectChange = (name: string, value: string) => {
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }))
-    }
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (validateForm()) {
-            // Format cost to include $ if not already present
-            const formattedCost = formData.cost.startsWith("$") ? formData.cost : `$${formData.cost}`
-            onSubmit({
-                ...formData,
-                cost: formattedCost,
-            })
-            setFormData({
-                brand: "",
-                type: "PLA",
-                color: "Black",
-                weight: "",
-                cost: "",
-            })
-            onClose()
+            setIsLoading(true)
+
+            try {
+                // Format cost to include $ if not already present
+                const formattedCost = formData.cost.startsWith("$") ? formData.cost : `$${formData.cost}`
+
+                // Simulate API call
+                await new Promise((resolve) => setTimeout(resolve, 1000))
+
+                // Success message
+                toast({
+                    title: "Filament added",
+                    description: `${formData.type} - ${formData.color} has been added to your filament inventory.`,
+                })
+
+                // Reset form and close modal
+                setFormData({
+                    brand: "",
+                    type: "PLA",
+                    color: "Black",
+                    weight: "",
+                    cost: "",
+                })
+                onClose()
+            } catch (error) {
+                toast({
+                    title: "Error",
+                    description: "Failed to add filament. Please try again.",
+                    variant: "destructive",
+                })
+            } finally {
+                setIsLoading(false)
+            }
         }
     }
 
@@ -137,27 +143,27 @@ export function AddFilamentModal({ isOpen, onClose, onSubmit }: AddFilamentModal
                     </CardHeader>
                     <form onSubmit={handleSubmit}>
                         <CardContent className="space-y-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="brand" className="text-sm font-medium">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="brand" className="text-right">
                                     Brand
                                 </Label>
                                 <Input
                                     id="brand"
                                     name="brand"
                                     value={formData.brand}
-                                    onChange={handleChange}
+                                    onChange={(e) => handleChange("brand", e.target.value)}
                                     placeholder="BambuLab"
-                                    className={errors.brand ? "border-destructive" : ""}
+                                    className={`col-span-3 ${errors.brand ? "border-destructive" : ""}`}
                                 />
-                                {errors.brand && <p className="text-xs text-destructive mt-1">{errors.brand}</p>}
+                                {errors.brand && <p className="text-xs text-destructive mt-1 col-start-2 col-span-3">{errors.brand}</p>}
                             </div>
 
-                            <div className="space-y-2">
-                                <Label htmlFor="type" className="text-sm font-medium">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="type" className="text-right">
                                     Filament Type
                                 </Label>
-                                <Select value={formData.type} onValueChange={(value) => handleSelectChange("type", value)}>
-                                    <SelectTrigger>
+                                <Select value={formData.type} onValueChange={(value) => handleChange("type", value)}>
+                                    <SelectTrigger className="col-span-3">
                                         <SelectValue placeholder="Select type" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -170,12 +176,12 @@ export function AddFilamentModal({ isOpen, onClose, onSubmit }: AddFilamentModal
                                 </Select>
                             </div>
 
-                            <div className="space-y-2">
-                                <Label htmlFor="color" className="text-sm font-medium">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="color" className="text-right">
                                     Color
                                 </Label>
-                                <Select value={formData.color} onValueChange={(value) => handleSelectChange("color", value)}>
-                                    <SelectTrigger>
+                                <Select value={formData.color} onValueChange={(value) => handleChange("color", value)}>
+                                    <SelectTrigger className="col-span-3">
                                         <SelectValue placeholder="Select color" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -229,41 +235,45 @@ export function AddFilamentModal({ isOpen, onClose, onSubmit }: AddFilamentModal
                                 </Select>
                             </div>
 
-                            <div className="space-y-2">
-                                <Label htmlFor="weight" className="text-sm font-medium">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="weight" className="text-right">
                                     Weight (grams)
                                 </Label>
                                 <Input
                                     id="weight"
                                     name="weight"
                                     value={formData.weight}
-                                    onChange={handleChange}
+                                    onChange={(e) => handleChange("weight", e.target.value)}
                                     placeholder="1000"
-                                    className={errors.weight ? "border-destructive" : ""}
+                                    className={`col-span-3 ${errors.weight ? "border-destructive" : ""}`}
                                 />
-                                {errors.weight && <p className="text-xs text-destructive mt-1">{errors.weight}</p>}
+                                {errors.weight && (
+                                    <p className="text-xs text-destructive mt-1 col-start-2 col-span-3">{errors.weight}</p>
+                                )}
                             </div>
 
-                            <div className="space-y-2">
-                                <Label htmlFor="cost" className="text-sm font-medium">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="cost" className="text-right">
                                     Cost
                                 </Label>
                                 <Input
                                     id="cost"
                                     name="cost"
                                     value={formData.cost}
-                                    onChange={handleChange}
+                                    onChange={(e) => handleChange("cost", e.target.value)}
                                     placeholder="29.99"
-                                    className={errors.cost ? "border-destructive" : ""}
+                                    className={`col-span-3 ${errors.cost ? "border-destructive" : ""}`}
                                 />
-                                {errors.cost && <p className="text-xs text-destructive mt-1">{errors.cost}</p>}
+                                {errors.cost && <p className="text-xs text-destructive mt-1 col-start-2 col-span-3">{errors.cost}</p>}
                             </div>
                         </CardContent>
                         <CardFooter className="flex justify-end space-x-3 pt-2">
                             <Button type="button" onClick={onClose} variant="outline">
                                 Cancel
                             </Button>
-                            <Button type="submit">Add Filament</Button>
+                            <Button type="submit" disabled={isLoading}>
+                                {isLoading ? "Adding..." : "Add Filament"}
+                            </Button>
                         </CardFooter>
                     </form>
                 </Card>

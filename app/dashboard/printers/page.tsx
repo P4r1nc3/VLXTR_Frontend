@@ -2,21 +2,12 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import {Filter, Plus, RefreshCcw} from "lucide-react"
+import { Filter, Plus, RefreshCcw } from "lucide-react"
 import { AddPrinterModal } from "@/components/printers/add-printer-modal"
 import { PrinterList } from "@/components/printers/printer-list"
 
 export default function PrintersPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const handleAddPrinter = (printerData: {
-    ip: string
-    serial: string
-    access_code: string
-  }) => {
-    console.log("Adding printer:", printerData)
-    // Here you would typically call an API to add the printer
-  }
 
   return (
       <div className="space-y-6">
@@ -41,7 +32,7 @@ export default function PrintersPage() {
           </div>
         </div>
         <PrinterList />
-        <AddPrinterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleAddPrinter} />
+        <AddPrinterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>
   )
 }

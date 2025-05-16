@@ -4,7 +4,7 @@ import { useState } from "react"
 import { FilamentList } from "@/components/filament/filament-list"
 import { AddFilamentModal } from "@/components/filament/add-filament-modal"
 import { Button } from "@/components/ui/button"
-import {Filter, Plus, RefreshCcw} from "lucide-react"
+import { Filter, Plus, RefreshCcw } from "lucide-react"
 
 export default function FilamentPage() {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -26,12 +26,13 @@ export default function FilamentPage() {
                         <span className="hidden sm:inline">Refresh</span>
                     </Button>
                     <Button size="sm" className="h-9 gap-1" onClick={() => setIsModalOpen(true)}>
-                        <Plus className="mr-2 h-4 w-4" /> Add Filament
+                        <Plus className="h-4 w-4" />
+                        <span className="hidden sm:inline">Add Filament</span>
                     </Button>
                 </div>
             </div>
             <FilamentList />
-            <AddFilamentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={() => {}} />
+            <AddFilamentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
 }
