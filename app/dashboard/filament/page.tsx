@@ -19,7 +19,7 @@ export default function FilamentPage() {
                 <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm" className="h-9 gap-1">
                         <Filter className="h-4 w-4" />
-                        <span>Filter</span>
+                        <span className="hidden sm:inline">Filter</span>
                     </Button>
                     <Button variant="outline" size="sm" className="h-9 gap-1">
                         <RefreshCcw className="h-4 w-4" />

@@ -10,15 +10,15 @@ import { Download, RefreshCcw, Calendar, BarChart2, Activity, Clock, DollarSign 
 export default function AnalyticsPage() {
     return (
         <div className="space-y-4">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight">Analytics Dashboard</h1>
+                    <h1 className="text-3xl font-bold tracking-tight">Analytic</h1>
                     <p className="text-muted-foreground">Comprehensive insights into your 3D printing operations</p>
                 </div>
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm" className="h-9 gap-1.5">
                         <Calendar className="h-4 w-4" />
-                        <span>Last 30 Days</span>
+                        <span className="hidden sm:inline">Last 30 Days</span>
                     </Button>
                     <Button variant="outline" size="sm" className="h-9 gap-1.5">
                         <RefreshCcw className="h-4 w-4" />
