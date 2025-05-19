@@ -5,7 +5,7 @@ import { OrdersAnalytics } from "@/components/analytics/orders-analytics"
 import { FilamentUsage } from "@/components/analytics/filament-usage"
 import { ProductionCosts } from "@/components/analytics/production-costs"
 import { StatCard } from "@/components/dashboard/stat-card"
-import { Download, RefreshCcw, Calendar, BarChart2, Activity, Clock, DollarSign } from "lucide-react"
+import { Download, RefreshCcw, BarChart2, Activity, Clock, DollarSign } from "lucide-react"
 
 export default function AnalyticsPage() {
     return (
@@ -17,16 +17,12 @@ export default function AnalyticsPage() {
                 </div>
                 <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm" className="h-9 gap-1.5">
-                        <Calendar className="h-4 w-4" />
-                        <span className="hidden sm:inline">Last 30 Days</span>
-                    </Button>
-                    <Button variant="outline" size="sm" className="h-9 gap-1.5">
                         <RefreshCcw className="h-4 w-4" />
-                        <span className="hidden sm:inline">Refresh Data</span>
+                        <span className="hidden sm:inline">Refresh</span>
                     </Button>
                     <Button size="sm" className="h-9 gap-1.5">
                         <Download className="h-4 w-4" />
-                        <span className="hidden sm:inline">Export Report</span>
+                        <span className="hidden sm:inline">Export</span>
                     </Button>
                 </div>
             </div>

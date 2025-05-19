@@ -27,7 +27,7 @@ export default function InventoryPage() {
                     </Button>
                     <Button size="sm" className="h-9 gap-1" onClick={() => setIsModalOpen(true)}>
                         <Plus className="h-4 w-4" />
-                        <span className="hidden sm:inline">Add Inventory Item</span>
+                        <span className="hidden sm:inline">Add Item</span>
                     </Button>
                     <AddInventoryItemModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
                 </div>
